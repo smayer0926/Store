@@ -1,17 +1,17 @@
 SET MODE PostgreSQL;
 
-CREATE TABLE IF NOT EXISTS products (
-    id int PRIMARY KEY auto_increment,
-    productName VARCHAR,
-    price FLOAT,
-    description VARCHAR
-);
 
 CREATE TABLE IF NOT EXISTS stores (
     id int PRIMARY KEY auto_increment,
     name VARCHAR,
     location VARCHAR,
-    phone VARCHAR
+    phone VARCHAR,
+    coffeeTypes INTEGER,
+    hasWifi BOOLEAN,
+    hasWorkSpace BOOLEAN,
+    hasVegan BOOLEAN,
+    sellsPets BOOLEAN,
+    type VARCHAR
 );
 
 CREATE TABLE IF NOT EXISTS products_stores (

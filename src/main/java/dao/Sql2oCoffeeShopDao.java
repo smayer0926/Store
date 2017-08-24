@@ -2,7 +2,6 @@ package dao;
 
 
 import models.CoffeeShop;
-import models.Store;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
@@ -26,6 +25,7 @@ public class Sql2oCoffeeShopDao implements CoffeeShopDao {
                     .addParameter("location", coffeeShop.getLocation())
                     .addParameter("phone", coffeeShop.getPhone())
                     .bind(CoffeeShop.class)
+                    .throwOnMappingFailure(false)
                     .executeUpdate()
                     .getKey();
             coffeeShop.setId(id);
@@ -39,6 +39,7 @@ public class Sql2oCoffeeShopDao implements CoffeeShopDao {
         String sql = "SELECT * FROM stores";
         try(Connection con = sql2o.open()) {
             return con.createQuery(sql)
+                    .throwOnMappingFailure(false)
                     .executeAndFetch(CoffeeShop.class);
         }
     }
@@ -49,6 +50,7 @@ public class Sql2oCoffeeShopDao implements CoffeeShopDao {
         try(Connection con = sql2o.open()) {
             return con.createQuery(sql)
                     .addParameter("id", id)
+                    .throwOnMappingFailure(false)
                     .executeAndFetchFirst(CoffeeShop.class);
         }
     }
@@ -59,6 +61,7 @@ public class Sql2oCoffeeShopDao implements CoffeeShopDao {
         try(Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)
+                    .throwOnMappingFailure(false)
                     .executeUpdate();
         } catch (Sql2oException ex) {
             System.out.println(ex);
@@ -74,6 +77,7 @@ public class Sql2oCoffeeShopDao implements CoffeeShopDao {
                     .addParameter("name", name)
                     .addParameter("location", location)
                     .addParameter("phone", phone)
+                    .throwOnMappingFailure(false)
                     .executeUpdate();
         } catch (Sql2oException ex) {
             System.out.println(ex);

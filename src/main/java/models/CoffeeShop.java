@@ -9,6 +9,7 @@ public class CoffeeShop extends Store {
     private boolean hasWifi;
     private boolean hasWorkSpace;
     private boolean hasVegan;
+    private String type;
 
     public CoffeeShop(String name, String location, String phone, int coffeeTypes, boolean hasWifi, boolean hasWorkSpace, boolean hasVegan) {
         super(name, location, phone);
@@ -16,6 +17,7 @@ public class CoffeeShop extends Store {
         this.hasWifi = hasWifi;
         this.hasWorkSpace = hasWorkSpace;
         this.hasVegan = hasVegan;
+        this.type = "CoffeeShop";
     }
 
     public int getCoffeeTypes() {
