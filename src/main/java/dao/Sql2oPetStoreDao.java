@@ -1,8 +1,6 @@
 package dao;
 
 
-import models.CoffeeShop;
-import models.PetFood;
 import models.PetStore;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -19,14 +17,10 @@ public class Sql2oPetStoreDao implements PetStoreDao {
 
     @Override
     public void add(PetStore petStore) {
-        String sql = "INSERT INTO stores (name, location, phone) VALUES (:name, :location, :phone)";
+        String sql = "INSERT INTO stores (name, location, phone, type, sellsPets) VALUES (:name, :location, :phone, :type, :sellsPets)";
         try(Connection con = sql2o.open()) {
             int id = (int) con.createQuery(sql)
-                    .addParameter("name", petStore.getName())
-                    .addParameter("location", petStore.getLocation())
-                    .addParameter("phone", petStore.getPhone())
-                    .bind(CoffeeShop.class)
-                    .throwOnMappingFailure(false)
+                    .bind(petStore)
                     .executeUpdate()
                     .getKey();
             petStore.setId(id);
@@ -37,13 +31,22 @@ public class Sql2oPetStoreDao implements PetStoreDao {
 
     @Override
     public List<PetStore> getAllStores() {
-        String sql = "SELECT * FROM stores";
+       String query = "SELECT * FROM stores";
         try(Connection con = sql2o.open()) {
-            return con.createQuery(sql)
-                    .throwOnMappingFailure(false)
+            return con.createQuery(query)
+                   .throwOnMappingFailure(false)
                     .executeAndFetch(PetStore.class);
         }
     }
+
+//    public List<String>_testingNames() {
+//        String query = "SELECT (name) FROM stores";
+//        try(Connection con = sql2o.open()) {
+//            return con.createQuery(query)
+//                    .executeAndFetch(String.class);
+//
+//        }
+//    }
 
     @Override
     public PetStore findById(int id) {

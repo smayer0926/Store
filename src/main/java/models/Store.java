@@ -1,10 +1,10 @@
 package models;
 
-public abstract class Store {
+public class Store {
     public String name;
     private String location;
     private String phone;
-    public int id;
+//    public int id;
 
     public Store (String name, String location, String phone){
         this.name = name;

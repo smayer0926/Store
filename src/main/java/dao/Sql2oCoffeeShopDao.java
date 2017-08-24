@@ -18,12 +18,17 @@ public class Sql2oCoffeeShopDao implements CoffeeShopDao {
 
     @Override
     public void add(CoffeeShop coffeeShop) {
-        String sql = "INSERT INTO stores (name, location, phone) VALUES (:name, :location, :phone)";
+        String sql = "INSERT INTO stores (name, location, phone, coffeeTypes, hasWifi, hasWorkSpace, hasVegan, type) VALUES (:name, :location, :phone,  :coffeeTypes, :hasWifi, :hasWorkSpace, :hasVegan, :type)";
         try(Connection con = sql2o.open()) {
             int id = (int) con.createQuery(sql)
                     .addParameter("name", coffeeShop.getName())
                     .addParameter("location", coffeeShop.getLocation())
                     .addParameter("phone", coffeeShop.getPhone())
+                    .addParameter("type", coffeeShop.getType())
+                    .addParameter("coffeeTypes", coffeeShop.getCoffeeTypes())
+                    .addParameter("hasWifi", coffeeShop.getHasWifi())
+                    .addParameter("hasWorkSpace", coffeeShop.getHasWorkSpace())
+                    .addParameter("hasVegan", coffeeShop.getHasVegan())
                     .bind(CoffeeShop.class)
                     .throwOnMappingFailure(false)
                     .executeUpdate()

@@ -5,13 +5,13 @@ CREATE TABLE IF NOT EXISTS stores (
     id int PRIMARY KEY auto_increment,
     name VARCHAR,
     location VARCHAR,
-    phone VARCHAR,
+    type VARCHAR,
     coffeeTypes INTEGER,
     hasWifi BOOLEAN,
     hasWorkSpace BOOLEAN,
     hasVegan BOOLEAN,
-    sellsPets BOOLEAN,
-    type VARCHAR
+    phone VARCHAR,
+    sellsPets BOOLEAN
 );
 
 CREATE TABLE IF NOT EXISTS products_stores (

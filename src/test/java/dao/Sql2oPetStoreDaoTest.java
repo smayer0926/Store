@@ -7,6 +7,10 @@ import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 
@@ -41,9 +45,23 @@ public class Sql2oPetStoreDaoTest {
     @Test
     public void getAllStores() throws Exception {
         PetStore petStore = createPetStore();
-        PetStore petStore1 = createPetStore();
         petStoreDao.add(petStore);
-        petStoreDao.add(petStore1);
+        petStoreDao.add(new PetStore("Cats", "PDX", "11111111", true));
+
+//        List<String> thisArray = new List<>();
+
+
+//        List<PetStore> testing = petStoreDao.getAllStores();
+//        assertEquals(Arrays.asList(thisArray), petStoreDao.getAllStores());
+
+
+//        String answer = petStoreDao._testingNames();
+//
+//
+//        System.out.println(answer);
+
+//        assertEquals("s", answer);
+
         assertEquals(2, petStoreDao.getAllStores().size());
     }
 
@@ -53,6 +71,7 @@ public class Sql2oPetStoreDaoTest {
         PetStore petStore = createPetStore();
         petStoreDao.add(petStore);
         PetStore returnedStore = petStoreDao.findById(petStore.getId());
+
         assertEquals(petStore, returnedStore);
     }
 

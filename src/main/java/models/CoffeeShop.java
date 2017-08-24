@@ -40,6 +40,10 @@ public class CoffeeShop extends Store {
         return id;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
